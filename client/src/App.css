@@ -3,10 +3,20 @@ body {
   color: white;
 } 
 
-footer {
+#right-footer {
   position: fixed;
   bottom: 0;
   right: 0;
+  width: 20%;
+  text-align: center;
+  background-color: #575555;
+  border-radius: 15px;
+}
+
+#left-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 20%;
   text-align: center;
   background-color: #575555;
@@ -39,4 +49,12 @@ h2 {
 .separator-horizontal > section:not(:first-child) {
   border-left : 1px solid white;
   margin-left: -1%;
+}
+
+a:visited {
+  color: #bebebe;
+}
+
+a {
+  color: white;
 }
