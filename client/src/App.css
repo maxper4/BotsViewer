@@ -3,32 +3,6 @@ body {
   color: white;
 } 
 
-#right-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 20%;
-  text-align: center;
-  background-color: #575555;
-  border-radius: 15px;
-}
-
-#left-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 20%;
-  text-align: center;
-  background-color: #575555;
-  border-radius: 15px;
-}
-
-header {
-  width: 100%;
-  height: 2.5rem;
-  text-align: center;
-}
-
 .separator-horizontal {
   display: flex;
   justify-content: space-around;
@@ -51,10 +25,17 @@ h2 {
   margin-left: -1%;
 }
 
-a:visited {
-  color: #bebebe;
+#runningBotsList {
+  list-style: none; 
+  padding: 0;
 }
 
-a {
-  color: white;
+#runningBotsList > li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: green; /* Change the color */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1em; /* Also needed for space (tweak if needed) */
+  font-size: 2em;
+  vertical-align: sub;
+  margin-left: -1.5em; /* Also needed for space (tweak if needed) */
 }

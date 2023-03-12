@@ -2,58 +2,62 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import config from './utils/config';
 
-function App() {
-  const [apiResponse, setApiResponse] = useState("");
+function App({apiConnection}) {
+  const [availableBots, setAvailableBots] = useState([]);
   const [runningBots, setRunningBots] = useState([]);
 
-  const testCallAPI = () => {
-    fetch(config.API_BASE_URL + "/testAPI").catch(err => { console.log(err); setApiResponse("Something went wrong while calling API.")})
-        .then(res => res.text())
-        .then(res => setApiResponse(res));
-  }
+  let updater;
 
   const getAvailableBots = () => {
     fetch(config.API_BASE_URL + "/availablesBots")
         .then(res => res.json())
-        .then(res => setRunningBots(res.availableBots));
+        .then(res => setAvailableBots(res.availableBots));
   }
 
+  const getRunningBots = () => {
+    fetch(config.API_BASE_URL + "/runningBots")
+    .then(res => res.json())
+    .then(res => setRunningBots(res.runningBots));
+}
+
   useEffect(() => {
-    testCallAPI();
-    getAvailableBots();
-  }, []);
+    if (apiConnection) {
+      updater = setInterval(() => {
+        getRunningBots();
+      }, config.UPDATE_TICK);
+
+      getAvailableBots();
+    }
+    else {
+      setAvailableBots([]);
+      setRunningBots([]);
+
+      clearInterval(updater);
+    }
+  }, [apiConnection]);
 
   return (
     <div className="App">
-      <header>
-        <h1>Maxper's Bots Army</h1>
-      </header>
       <div className="separator-horizontal">
         <section>
           <h2>Running Bots</h2>
-          <p>Not yet.</p>
+          <ul id="runningBotsList">
+            {runningBots.map((bot, index) => (
+              <li key={"running-bot" + index}><a href={config.BOTS_PAGE[bot]}>{bot}</a></li>
+            ))}
+          </ul>
         </section>
         <div className="vertical-line"></div>
         <section>
           <h2>Available Bots</h2>
           <ul>
-            {runningBots.map((bot, index) => (
-              <li key={"running-bot" + index}>{bot}</li>
+            {availableBots.map((bot, index) => (
+              <li key={"avalaible-bot" + index}><a href={config.BOTS_PAGE[bot]}>{bot}</a></li>
             ))}
           </ul>
         </section>
       </div>
-      <div id="left-footer">
-        <p>
-          <a href="https://github.com/maxper4" target="_blank" rel="noreferrer">GitHub</a> <br />
-          <a href="https://twitter.com/maxper__" target="_blank" rel="noreferrer">Twitter</a>
-        </p>
-      </div>
-      <div id="right-footer">
-        <p>
-        {apiResponse}
-        </p>
-      </div>
+      
     </div>
   );
 }

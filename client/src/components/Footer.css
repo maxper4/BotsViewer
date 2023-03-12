@@ -1,0 +1,27 @@
+a:visited {
+    color: #bebebe;
+}
+
+a {
+    color: white;
+}
+
+#right-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    text-align: center;
+    background-color: #575555;
+    border-radius: 15px;
+}
+  
+#left-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    text-align: center;
+    background-color: #575555;
+    border-radius: 15px;
+}

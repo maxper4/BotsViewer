@@ -6,6 +6,10 @@ You should add a config.json file in the src/utils directory with the following 
 
 ```json
 {
-  "API_BASE_URL": "http://localhost:3000"
+  "API_BASE_URL": "http://localhost:3000",
+  "BOTS_PAGE": {
+        "bot1": "/page-bot1",
+        "bot2": "/page-bot2"
+    }
 }
 ```
