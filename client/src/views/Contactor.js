@@ -27,6 +27,9 @@ function Contactor({apiConnection}) {
             if(res.success){
                 setContacts(contacts.filter(c => c !== contact));
             }
+            else {
+                alert("Something went wrong");
+            }
         });
     }
 
@@ -45,13 +48,16 @@ function Contactor({apiConnection}) {
         .then(res => res.json())
         .then(res => {
             if(res.success){
+                document.getElementById("newContactNickname").value = "";
+                document.getElementById("newContactDiscordId").value = "";
+                document.getElementById("newContactPermissions").value = 1;
+
                 getContacts();
             }
+            else {
+                alert("Something went wrong");
+            }
         });
-
-        document.getElementById("newContactNickname").value = "";
-        document.getElementById("newContactDiscordId").value = "";
-        document.getElementById("newContactPermissions").value = 1;
     }
 
     useEffect(() => {
@@ -65,7 +71,7 @@ function Contactor({apiConnection}) {
 
     return (
         <>
-        <BotsMonitorInfos botName="Contactor" apiConnection={apiConnection} />
+        <BotsMonitorInfos botName="contactor" apiConnection={apiConnection} />
         <div className="App">
             <h2>Contactor</h2>
             

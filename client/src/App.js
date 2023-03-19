@@ -43,7 +43,7 @@ function App({apiConnection}) {
           <h2>Running Bots</h2>
           <ul id="runningBotsList">
             {runningBots.map((bot, index) => (
-              <li key={"running-bot" + index}><a href={config.BOTS_PAGE[bot]}>{bot}</a></li>
+              <li key={"running-bot" + index}><a href={config.BOTS[bot].page}>{config.BOTS[bot].name}</a></li>
             ))}
           </ul>
         </section>
@@ -52,7 +52,7 @@ function App({apiConnection}) {
           <h2>Available Bots</h2>
           <ul>
             {availableBots.map((bot, index) => (
-              <li key={"avalaible-bot" + index}><a href={config.BOTS_PAGE[bot]}>{bot}</a></li>
+              <li key={"avalaible-bot" + index}><a href={config.BOTS[bot].page}>{config.BOTS[bot].name}</a></li>
             ))}
           </ul>
         </section>

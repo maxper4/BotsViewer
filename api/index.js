@@ -15,6 +15,7 @@ var availablesBotsRouter = require("./routes/availablesBots");
 var runningBotsRouter = require("./routes/runningBots");
 var botsInfosRouter = require("./routes/botsInfos");
 var contactorRouter = require("./routes/bots/contactor");
+var walletListenerRouter = require("./routes/bots/wallet-listener");
 
 var app = express();
 
@@ -78,6 +79,7 @@ app.use("/availablesBots", availablesBotsRouter);
 app.use("/runningBots", runningBotsRouter);
 app.use("/botsInfos", botsInfosRouter);
 app.use("/contactor", contactorRouter);
+app.use("/wallet-listener", walletListenerRouter);
 
 
 // catch 404 and forward to error handler

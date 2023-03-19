@@ -38,4 +38,5 @@ h2 {
   font-size: 2em;
   vertical-align: sub;
   margin-left: -1.5em; /* Also needed for space (tweak if needed) */
+  line-height: 0.4em;
 }
