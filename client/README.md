@@ -7,9 +7,15 @@ You should add a config.json file in the src/utils directory with the following 
 ```json
 {
   "API_BASE_URL": "http://localhost:3000",
-  "BOTS_PAGE": {
-        "bot1": "/page-bot1",
-        "bot2": "/page-bot2"
+  "BOTS": {
+        "bot-1" : {
+            "name": "Bot 1",
+            "page": "/bot-1"
+        },
+        "bot-2" : {
+            "name": "Bot 2",
+            "page": "/bot-2"
+        }
     }
 }
 ```
