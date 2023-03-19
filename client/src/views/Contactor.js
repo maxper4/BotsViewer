@@ -4,14 +4,21 @@ import config from '../utils/config';
 import "./Contactor.css";
 
 import BotsMonitorInfos from '../components/BotsMonitorInfos';
+import Loader from '../components/Loader';
 
 function Contactor({apiConnection}) {
     const [contacts, setContacts] = useState([]);
+    const [contactsLoading, setContactsLoading] = useState(true);
 
     const getContacts = () => {
+        setContactsLoading(true);
+
         fetch(config.API_BASE_URL + "/contactor/contacts")
             .then(res => res.json())
-            .then(res => setContacts(res.contacts));
+            .then(res => { 
+                setContacts(res.contacts);
+                setContactsLoading(false);
+            });
     }
 
     const onClickRemoveContact = (contact) => {
@@ -72,6 +79,7 @@ function Contactor({apiConnection}) {
     return (
         <>
         <BotsMonitorInfos botName="contactor" apiConnection={apiConnection} />
+
         <div className="App">
             <h2>Contactor</h2>
             
@@ -79,6 +87,7 @@ function Contactor({apiConnection}) {
                 <h3>Contacts</h3>
                 <ul>
                     {
+                        contactsLoading ? <Loader /> :
                         contacts.map((contact, index) => 
                             <li key={"contact"+index}>
                                 <span>{contact}</span> 

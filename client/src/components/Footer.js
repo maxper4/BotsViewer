@@ -1,6 +1,21 @@
+import React, { useState, useEffect } from "react";
+
 import "./Footer.css";
 
+import Loader from "./Loader";
+
 function Footer({apiResponse}) {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (apiResponse !== "") {
+            setLoading(false);
+        }
+        else {
+            setLoading(true);
+        }
+    }, [apiResponse]);
+
     return (
         <>
         <div id="left-footer">
@@ -10,9 +25,15 @@ function Footer({apiResponse}) {
         </p>
         </div>
         <div id="right-footer">
-            <p>
-            {apiResponse}
-            </p>
+            {
+                loading 
+                && <Loader /> 
+                || 
+                <p>
+                    {apiResponse}
+                </p>
+            }
+           
         </div>
         </>
     );
