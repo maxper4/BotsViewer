@@ -9,19 +9,19 @@ const config = require("./config");
 const { writeFileSync } = require("fs");
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
 var availablesBotsRouter = require("./routes/availablesBots");
 var runningBotsRouter = require("./routes/runningBots");
 var botsInfosRouter = require("./routes/botsInfos");
 var contactorRouter = require("./routes/bots/contactor");
 var walletListenerRouter = require("./routes/bots/wallet-listener");
+var botsManagerRouter = require("./routes/bots/bots-manager");
 
 var app = express();
 
 ipc.config.id = "bots-viewer";
 ipc.config.retry = 1500;
-ipc.config.silent = false;
+ipc.config.silent = true;
 
 config.runningBots = [];
 
@@ -73,13 +73,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/availablesBots", availablesBotsRouter);
 app.use("/runningBots", runningBotsRouter);
 app.use("/botsInfos", botsInfosRouter);
 app.use("/contactor", contactorRouter);
 app.use("/wallet-listener", walletListenerRouter);
+app.use("/bots-manager", botsManagerRouter);
 
 
 // catch 404 and forward to error handler

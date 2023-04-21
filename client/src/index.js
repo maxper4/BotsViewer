@@ -10,6 +10,7 @@ import PageNotFound from './views/PageNotFound';
 
 import Contactor from './views/Contactor';
 import WalletListener from './views/WalletListener';
+import BotsManager from './views/BotsManager';
 
 import config from './utils/config';
 
@@ -35,6 +36,7 @@ const Main = () => {
           <Route path="/" element={<App apiConnection={apiConnection}/>}/>.
           <Route path="/contactor" element={<Contactor apiConnection={apiConnection}/>}/>
           <Route path="/wallet-listener" element={<WalletListener apiConnection={apiConnection}/>}/>
+          <Route path="/bots-manager" element={<BotsManager apiConnection={apiConnection}/>} />
           <Route path="/404" element={ <PageNotFound /> } />
           <Route path="/*" element={ <Navigate from="/" to="/404" /> } />
       </Routes>
